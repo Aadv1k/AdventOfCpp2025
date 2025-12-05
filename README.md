@@ -7,6 +7,7 @@ It's that time of the year again! The goal is to get through all the 12 days thi
 | [Day 1](./solutions/day01.cpp) | ★ | ☆ |
 | [Day 2](./solutions/day02.cpp) | ★ | ★ |
 | [Day 3](./solutions/day03.cpp) | ★ | ★ |
+| [Day 4](./solutions/day04.cpp) | ★ | ★ |
 
 > Note:
 > ★ = completed the solution
