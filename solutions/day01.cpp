@@ -1,5 +1,4 @@
 #include <iostream>
-#include <print>
 #include <sstream>
 
 extern "C" void part_a(std::string input) {
