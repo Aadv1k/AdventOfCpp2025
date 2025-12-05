@@ -1,9 +1,10 @@
 #include <iostream>
 #include <sstream>
+#include <functional>
 
 #define WORD_LEN 256
 
-bool is_repeating_string(std::string input) {
+bool is_repeating_string(std::string input, const std::function <bool(int)>& fn_match_condition) {
     std::string buffer;
     auto len = input.length();
 
@@ -35,7 +36,7 @@ bool is_repeating_string(std::string input) {
                 if (input.substr(k*(seq_len), seq_len) == buffer) full_match++;
             }
 
-            if (full_match == parts && full_match <= 2) 
+            if (full_match == parts && fn_match_condition(full_match)) 
                 return true;
         };
 
@@ -62,11 +63,37 @@ extern "C" void part_a(std::string input) {
 
         for (size_t i = lhs_num; i <= rhs_num; ++i) {
             auto num_as_str = std::to_string(i);
-            if (is_repeating_string(num_as_str)) {
+            if (is_repeating_string(num_as_str, [](int m) { return m <= 2; })) {
                 sum_invalid_ids += i;
             };
         }
     }
 
     std::cout << "Sum of all invalid IDs: " << sum_invalid_ids << std::endl;
+}
+
+extern "C" void part_b(std::string input) {
+    std::istringstream iss(input);
+
+    std::string chunk;
+    char lhs[WORD_LEN];
+    char rhs[WORD_LEN];
+
+    size_t sum_invalid_ids = 0;
+
+    while (std::getline(iss, chunk, ',')) {
+        sscanf(chunk.c_str(), "%[^-]-%s", &lhs[0], &rhs[0]);
+
+        size_t lhs_num = std::stoull(lhs);
+        size_t rhs_num = std::stoull(rhs);
+
+        for (size_t i = lhs_num; i <= rhs_num; ++i) {
+            auto num_as_str = std::to_string(i);
+            if (is_repeating_string(num_as_str, [](int m) { return m >= 2; })) {
+                sum_invalid_ids += i;
+            };
+        }
+    }
+
+    std::cout << "Sum of all invalid IDs w/ seq gt_or_eq 2: " << sum_invalid_ids << std::endl;
 }
