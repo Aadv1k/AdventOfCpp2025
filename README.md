@@ -8,6 +8,8 @@ It's that time of the year again! The goal is to get through all the 12 days thi
 | [Day 2](./solutions/day02.cpp) | ★ | ★ |
 | [Day 3](./solutions/day03.cpp) | ★ | ★ |
 | [Day 4](./solutions/day04.cpp) | ★ | ★ |
+| [Day 5](./solutions/day05.cpp) | ★ | ☆ |
+| [Day 6](./solutions/day06.cpp) | ★ |   |
 
 > Note:
 > ★ = completed the solution
@@ -30,6 +32,10 @@ DYLD_LIBRARY_PATH=./bin/shared ./bin/main <day00> </path/to/input>
 I took a short break from AoC, slept on Day 2 and got it working eventually. Honestly, Day 2 was def easier than Day 1, the main lesson learnt here was using the appropriate type conversion functions, given the input. 
 
 So I was reading the input into a string buffer, and then casting it to a `size_t` through `atoi(buffer)`, this worked for the sample, but undershot for the actual input. I then tried using `strtoul` and that OVERSHOT when I cast it to a `size_t`. Finally what worked was `std::stoul()`. It is truly a mystery where these functions are named so cryptically. Onto day 3!
+
+### Day 6
+
+It's the second time in AoC where I spent HOURS debugging an issue, only to realize it was fixed by just changing the numeric declarations from `auto` (which defaults to int) to `size_t` to fix the big ass numbers found in the AoC inputs
 
 ### 
 

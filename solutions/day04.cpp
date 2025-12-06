@@ -86,7 +86,6 @@ extern "C" void part_b(std::string input) {
 
 
         current_state = next_state;
-        if (removable_rolls == 0) break;
         total_removed_rolls += removable_rolls;
     }
 
