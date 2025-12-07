@@ -70,3 +70,78 @@ extern "C" void part_a(std::string input) {
 
     cout << "The grand total of all the answers in the worksheet is " << grand_total << endl;
 }
+
+size_t perform_op(vector<size_t> nums, char op) {
+    size_t result = 0;
+    for (const auto& num : nums) {
+        if (num == 0) continue;
+
+        if (op == '*') {
+            if (result == 0) result = 1;
+            result *= num;
+            continue;
+        } 
+
+        result += num;
+    }
+
+    return result;
+}
+
+
+extern "C" void part_b(std::string input) {
+    istringstream iss(input);
+    string line;
+
+    vector<string> matrix;
+
+    while (getline(iss, line)) matrix.push_back(line);
+
+    auto m_len = matrix.size(),
+         r_len = matrix[0].length();
+
+    vector<size_t> results,
+                    stack;
+
+    for (int i = r_len; i >= 0; --i) {
+        string digit;
+
+        for (size_t j = 0; j < m_len; ++j) {
+
+            if (matrix[j][i] == '*' || matrix[j][i] == '+') {
+                try {
+                    stack.push_back(stoull(digit));
+                } catch (std::invalid_argument) {
+                    continue;
+                }
+
+                auto result = perform_op(stack, matrix[j][i]);
+
+                results.push_back(result);
+
+                stack.clear();
+                digit = "";
+
+                i-=1;
+                break;
+            }
+
+            digit += matrix[j][i];
+        }
+
+        try {
+            stack.push_back(stoull(digit));
+        } catch (std::invalid_argument) {
+            continue;
+        }
+    }
+
+    size_t grand_total = 0;
+    for (const auto& result : results) {
+        grand_total += result;
+    }
+
+
+    cout << "The grand total of all the individual answers in the worksheet is " << grand_total << endl;
+
+}
