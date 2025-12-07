@@ -10,6 +10,7 @@ It's that time of the year again! The goal is to get through all the 12 days thi
 | [Day 4](./solutions/day04.cpp) | ★ | ★ |
 | [Day 5](./solutions/day05.cpp) | ★ | ☆ |
 | [Day 6](./solutions/day06.cpp) | ★ | ★ |
+| [Day 7](./solutions/day07.cpp) | ★ | ☆ |
 
 > Note:
 > ★ = completed the solution
@@ -37,7 +38,9 @@ So I was reading the input into a string buffer, and then casting it to a `size_
 
 It's the second time in AoC where I spent HOURS debugging an issue, only to realize it was fixed by just changing the numeric declarations from `auto` (which defaults to int) to `size_t` to fix the big ass numbers found in the AoC inputs
 
-### 
+### Day 7
+
+Day 7 was PRETTY difficult, had to loop up the memoization technique on youtube to make it work (the bruteforce solution didn't even work after 20 mins, and trust me, I TRIED.)
 
 
 ## Previous Attempts
